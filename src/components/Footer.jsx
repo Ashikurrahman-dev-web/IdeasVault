@@ -1,51 +1,92 @@
-import Image from "next/image";
-import facebook from "@/image/facebook.png";
-import twitter from "@/image/twitter.png";
-import instagram from "@/image/instagram.png";
-
-
+"use client";
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
+import Image from 'next/image';
 const Footer = () => {
+  const { data: userData } = authClient.useSession();
+    const user = userData?.user;
   return (
-    
-      <footer className="px-4 sm:px-6 lg:px-8 py-10 sm:py-14 border-t border-outline-variant/10">
-  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-8 sm:gap-10">
-    <div className="flex flex-col items-center lg:items-start gap-4 text-center lg:text-left">
-       <div className="flex items-center gap-3 group">
-<div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-500 bg-black border border-outline-variant/20 dark:border-white/10">
-           <Image
-            src="/logo.jpg"
-            alt="IdeasVault"
-            fill
-            className="object-cover"
-            unoptimized
-          />
+    <footer className="border-t border-gray-800 text-gray-600 px-6 md:px-16 py-16">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-12">
+          <h1 className="text-6xl md:text-7xl block font-black tracking-tight text-on-background transition-colors">
+            Ideas<span className="text-green-500 -ml-[0.15em]">Vault</span>
+          </h1>
+          <p className="mt-4 max-w-xl">
+            Your gateway to extraordinary ideas and inspiration around the world.
+          </p>
         </div>
 
+        {/* Grid Section */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Logo */}
+          <div>
+<div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-primary/20 border border-outline-variant/20 dark:border-white/10">
+              <Image
+                          src="/logo.jpg"
+                          alt="Ideas Logo"
+                          fill
+                          className="object-cover"
+                          priority
+                          unoptimized
+                        />
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-black mb-3 font-bold tracking-wide">QUICK LINKS</h3>
+            <ul className="space-y-2">
+              <li className="hover:text-white cursor-pointer"><Link href="/">Home</Link></li>
+              <li className="hover:text-white cursor-pointer"><Link href="/ideas">Ideas</Link></li>
+             {user && (
+                <>
+                  <li className="hover:text-white cursor-pointer"><Link href="/addidea">Add Idea</Link></li>
+                  <li className="hover:text-white cursor-pointer"><Link href="/myideas">My Ideas</Link></li>
+                  <li className="hover:text-white cursor-pointer"><Link href="/myinteractions">My Interactions</Link></li>
+                </>
+              )}
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="text-black mb-3 font-bold tracking-wide">SUPPORT</h3>
+            <ul className="space-y-2">
+              <li className="hover:text-white cursor-pointer">Help Center</li>
+              <li className="hover:text-white cursor-pointer">
+                Terms of Service
+              </li>
+              <li className="hover:text-white cursor-pointer">
+                Privacy Policy
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-black mb-3 font-bold tracking-wide">CONTACT US</h3>
+            <ul className="space-y-2">
+              <li>865 901 2633</li>
+              <li>info@ideasvault.com</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm">
+            © 2026 IdeasVault. All rights reserved.
+          </p>
+
+          <div className="flex gap-5 mt-4 md:mt-0 text-black text-lg">
+            <span className="cursor-pointer">X</span>
+            <span className="cursor-pointer">in</span>
+            <span className="cursor-pointer">◎</span>
+          </div>
+        </div>
       </div>
-
-      {/* Copyright */}
-      <p className="max-w-xl text-[10px] sm:text-[11px] font-heading font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] leading-relaxed text-on-surface-variant/80 px-2 sm:px-0">
-        © 2026 IdeasVault. All rights reserved.
-      </p>
-    </div>
-
-    {/* Right Side */}
-    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 font-heading text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em]">
-      
-<div className="bg-green-500 p-2 rounded-full text-white hover:bg-green-600 transition-all">
-           <Image src={facebook} alt="Facebook" width={20} height={20} />
-         </div>
-
-       <div className="bg-green-500 p-2 rounded-full text-white hover:bg-green-600 transition-all">
-            <Image src={twitter} alt="Twitter" width={20} height={20} />
-       </div>
-
-     <div className="bg-green-500 p-2 rounded-full text-white hover:bg-green-600 transition-all">
-              <Image src={instagram} alt="Instagram" width={20} height={20} />
-         </div>
-      </div>
-  </div>
-</footer>
+    </footer>
   );
 };
 

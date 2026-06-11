@@ -1,10 +1,11 @@
 "use client";
 import {Check} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
-import React from 'react';
+import {useState} from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import {FaEye, FaEyeSlash } from "react-icons/fa";
 const SignUp = () => {
     const router = useRouter();
  const onSubmit = async (e) => {
@@ -35,7 +36,8 @@ const SignUp = () => {
       toast.error("❌ Sign Up Failed!");
       console.log(err);
     }
- }  
+ };
+ const [isShowPassword, setIsShowPassword] = useState(false);  
     return (
      <div className="max-w-7xl mx-auto mt-8 mb-8 items-center"> 
      <div>
@@ -78,17 +80,33 @@ const SignUp = () => {
         isRequired
         minLength={8}
         name="password"
-        type="password"
+        type={isShowPassword ? "text" : "password"}
         validate={(value) => {
           if (value.length < 8) {
             return "Password must be at least 8 characters";
+          }
+          if (!/[A-Z]/.test(value)) {
+            return "Password must contain at least one uppercase letter";
+          }
+          if (!/[0-9]/.test(value)) {
+            return "Password must contain at least one number";
           }
           return null;
         }}
       >
         <Label>Password</Label>
-        <Input placeholder="Enter your password" />
-        <Description>Must be at least 8 characters</Description>
+       <div className="relative">
+           <Input placeholder="Enter your password"  />
+           <button
+             type="button"
+             onClick={() => setIsShowPassword(!isShowPassword)}
+             className="absolute right-3 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+             aria-label={isShowPassword ? 'Hide password' : 'Show password'}
+           >
+             {isShowPassword ?<FaEye /> : <FaEyeSlash /> }
+           </button>
+         </div>
+        <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
         <FieldError />
       </TextField>
       <div className="flex gap-2">

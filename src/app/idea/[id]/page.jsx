@@ -1,0 +1,72 @@
+
+import { DeleteIdea } from '@/components/DeleteIdea';
+import {EditModal} from '@/components/EditIdea';
+import React from 'react';
+
+const Details = async ({ params }) => {
+    const { id } = await params;
+    const res = await fetch(`http://localhost:5000/ideaData/${id}`);
+    const idea = await res.json();
+    return (
+       <section className="max-w-6xl mx-auto px-6 py-12">
+      <div className="bg-white rounded-3xl overflow-hidden shadow-xl">
+        <div className="relative h-[450px]">
+          <img
+            src={idea.imageUrl}
+            alt={idea.title}
+            className="object-cover"
+          />
+        </div>
+
+        <div className="p-8">
+          <span className="bg-green-500 text-white px-4 py-2 rounded-full">
+            {idea.category}
+          </span>
+
+          <h1 className="text-4xl font-bold mt-6 mb-4">
+            {idea.title}
+          </h1>
+
+          <p className="text-gray-600 mb-8">
+            {idea.shortDescription}
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-gray-100 p-5 rounded-2xl">
+              <h3 className="font-semibold mb-2">
+                🎯 Target Audience
+              </h3>
+              <p>{idea.targetAudience}</p>
+            </div>
+
+            <div className="bg-gray-100 p-5 rounded-2xl">
+              <h3 className="font-semibold mb-2">
+                ⚠️ Problem Statement
+              </h3>
+              <p>{idea.problemStatement}</p>
+            </div>
+          </div>
+
+          <div className="bg-green-50 p-6 rounded-2xl mb-8">
+            <h3 className="font-bold text-xl mb-3">
+              💡 Proposed Solution
+            </h3>
+            <p>{idea.proposedSolution}</p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-xl mb-3">
+              📖 Full Description
+            </h3>
+            <p className="leading-8">
+              {idea.description}
+            </p>
+          </div>
+        </div>
+        <EditModal id={idea._id} data={idea} /> <DeleteIdea id={idea._id} />
+      </div>
+    </section>
+    );
+};
+
+export default Details;

@@ -1,11 +1,14 @@
 "use client";
 import {Check} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
-import React from 'react';
+import {useState} from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { GrGoogle } from "react-icons/gr";
+import {FaEye, FaEyeSlash } from "react-icons/fa";
 const SignIn = () => {
+ 
     const router = useRouter();
  const onSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +20,7 @@ const SignIn = () => {
         await authClient.signIn.email({
           email: user.email,
           password: user.password,
-          callbackURL: "/home",
+          callbackURL: "/",
         
         });
       if (error) {
@@ -27,13 +30,25 @@ const SignIn = () => {
 
       toast.success("✅ Sign In Successful!");
 
-      router.push("/home");
+      router.push("/");
 
     } catch (err) {
       toast.error("❌ Sign In Failed!");
       console.log(err);
     }
- }  
+ };  
+ const handleGoogleSignIn = async () => {
+  try {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  } catch (err) {
+    toast.error("❌ Google Login Failed!");
+    console.log(err);
+  }
+};
+const [isShowPassword, setIsShowPassword] = useState(false);
     return (
      <div className="max-w-7xl mx-auto mt-8 mb-8 items-center"> 
      <div>
@@ -57,22 +72,41 @@ const SignIn = () => {
         <FieldError />
       </TextField>
       <TextField
-        isRequired
-        minLength={8}
-        name="password"
-        type="password"
-        validate={(value) => {
-          if (value.length < 8) {
-            return "Password must be at least 8 characters";
-          }
-          return null;
-        }}
-      >
-        <Label>Password</Label>
-        <Input placeholder="Enter your password" />
-        <Description>Must be at least 8 characters</Description>
-        <FieldError />
-      </TextField>
+  isRequired
+  name="password"
+  type={isShowPassword ? "text" : "password"}
+  validate={(value) => {
+    if (value.length < 8) {
+      return "Password must be at least 8 characters";
+    }
+
+    if (!/[0-9]/.test(value)) {
+      return "Password must contain at least one number";
+    }
+
+    return null;
+  }}
+>
+  <Label>Password</Label>
+
+  <div className="relative">
+    <Input placeholder="Enter your password"  />
+    <button
+      type="button"
+      onClick={() => setIsShowPassword(!isShowPassword)}
+      className="absolute right-3 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
+      aria-label={isShowPassword ? 'Hide password' : 'Show password'}
+    >
+      {isShowPassword ?<FaEye />: <FaEyeSlash /> }
+    </button>
+  </div>
+
+  <Description>
+    Must be at least 8 characters with 1 number
+  </Description>
+
+  <FieldError />
+</TextField>
       <div className="flex gap-2">
         <Button className={'bg-green-500'} type="submit">
           <Check />
@@ -82,7 +116,13 @@ const SignIn = () => {
           Reset
         </Button>
       </div>
-    </Form>   
+    </Form>
+     <p className="text-center text-2xl text-green-500">OR</p>
+
+      <Button onClick={handleGoogleSignIn} className="w-full bg-green-500">
+        <GrGoogle />
+        Sign In With Google
+      </Button>   
     </div> 
     );
 };
