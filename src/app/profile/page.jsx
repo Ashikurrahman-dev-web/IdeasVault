@@ -20,7 +20,7 @@ const ProfilePage = () => {
         </Avatar>
         <h2>{user?.name}</h2>
         <p>{user?.email}</p>
-        <UpdateUserModal></UpdateUserModal>
+        <UpdateUserModal img={user?.image} name={user?.name}></UpdateUserModal>
       </Card>
     </div>
   );
