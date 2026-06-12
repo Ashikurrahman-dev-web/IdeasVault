@@ -8,7 +8,6 @@ const MyInteraction = ({comments= [],refreshComments}) => {
   console.log(comments)
   const { data: userData } = authClient.useSession();
 const user = userData?.user;
-
   return (
     <div className="max-w-7xl mx-auto mt-8 mb-8">
       <div className="grid lg:grid-cols-2 gap-8">

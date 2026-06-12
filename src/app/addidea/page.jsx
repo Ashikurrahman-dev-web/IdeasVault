@@ -17,7 +17,7 @@ const AddIdea = () => {
       body: JSON.stringify(ideaData), 
     });
     setIsAdded(true);
-    toast.success("✅ Idea Added Successful!");
+    toast.success("✅ Idea Added Successfully!");
         const data = await res.json();
     }
     return (

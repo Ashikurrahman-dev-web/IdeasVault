@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import {Button, Label,TextArea, TextField} from "@heroui/react";
+import toast from "react-hot-toast";
 const CommentSection = ({ refreshComments }) => {
   const [isPost, setIsPost] = useState(false);
     const onSubmit = async (e) => {
@@ -21,6 +22,7 @@ const CommentSection = ({ refreshComments }) => {
       e.target.reset();
 await refreshComments();
     }; 
+    toast.success("✅ Comment Added Successfully in MyInteraction Page!")
 };
     return (
         <div>
