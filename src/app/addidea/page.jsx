@@ -1,20 +1,23 @@
 "use client";
 import React, { useState } from 'react';
 import {Button, FieldError, Select, ListBox, Input, Label,TextArea, TextField} from "@heroui/react";
+import toast from 'react-hot-toast';
 const AddIdea = () => {
   const [isAdded, setIsAdded]= useState(false);
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const ideaData = Object.fromEntries(formData.entries());
+        
  const res=await fetch('http://localhost:5000/ideaData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(ideaData),
+      body: JSON.stringify(ideaData), 
     });
     setIsAdded(true);
+    toast.success("✅ Idea Added Successful!");
         const data = await res.json();
     }
     return (

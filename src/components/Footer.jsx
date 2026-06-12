@@ -48,21 +48,6 @@ const Footer = () => {
               )}
             </ul>
           </div>
-
-          {/* Support */}
-          <div>
-            <h3 className="text-black mb-3 font-bold tracking-wide">SUPPORT</h3>
-            <ul className="space-y-2">
-              <li className="hover:text-white cursor-pointer">Help Center</li>
-              <li className="hover:text-white cursor-pointer">
-                Terms of Service
-              </li>
-              <li className="hover:text-white cursor-pointer">
-                Privacy Policy
-              </li>
-            </ul>
-          </div>
-
           {/* Contact */}
           <div>
             <h3 className="text-black mb-3 font-bold tracking-wide">CONTACT US</h3>

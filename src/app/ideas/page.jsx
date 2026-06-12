@@ -2,12 +2,12 @@
 import {useState, useEffect} from "react"; 
 import Link from "next/link"; 
 import Image from "next/image";
-import CommentSection from "@/components/CommentSection"
+import { Select, ListBox, Label} from "@heroui/react";
  const Idea = () => { 
   const [ideas, setIdeas] = useState([]);
 const [search, setSearch] = useState("");
 const [query, setQuery] = useState("");
-
+const [category, setCategory] = useState("");
 useEffect(() => {
   const fetchIdeas = async () => {
     try {
@@ -21,13 +21,23 @@ useEffect(() => {
 
   fetchIdeas();
 }, []);
+console.log(category);
+console.log(ideas);
+const filteredIdeas = ideas.filter((idea) => {
+  console.log(
+    "DB:",
+    idea.category,
+    "Selected:",
+    category
+  );
 
-const filteredIdeas = Array.isArray(ideas)
-  ? ideas.filter((idea) =>
-      (idea?.title || "").toLowerCase().includes(query.toLowerCase())
-    )
-  : [];
-
+  return (
+    (idea?.title || "")
+      .toLowerCase()
+      .includes(query.toLowerCase()) &&
+    (!category || idea.category === category)
+  );
+});
 const handleSearch = () => {
   setQuery(search);
 };
@@ -51,6 +61,19 @@ className="w-full md:w-1/2 border px-4 py-2 rounded-xl outline-none focus:ring-2
           Search
         </button>
       </div>
+<p className="font-bold text-green-500">Selected Category: <span>{category}</span></p>
+      <select
+  value={category}
+  onChange={(e) => setCategory(e.target.value)}
+>
+  <option value="">All</option>
+  <option value="Politics">Politics</option>
+  <option value="Education">Education</option>
+  <option value="Technology">Technology</option>
+  <option value=" Artificial Intelligence"> Artificial Intelligence</option>
+  <option value=" Cyber Security">Cyber Security</option>
+  <option value="Environment">Environment</option>
+  </select>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
             {filteredIdeas.map((idea) => (
               <div
@@ -105,8 +128,6 @@ className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl trans
               </div>
             ))}
           </div>
-          
-        <CommentSection/>
           </div>
     );
 };

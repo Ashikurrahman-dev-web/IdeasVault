@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Avatar,Button, Dropdown, Label,Select } from '@heroui/react';
+import { Avatar,Button, Dropdown,Select } from '@heroui/react';
 const Navbar = () => {
     const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
