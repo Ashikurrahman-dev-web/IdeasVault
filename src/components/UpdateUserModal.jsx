@@ -5,7 +5,7 @@ import { BiUser } from "react-icons/bi";
 import { authClient } from '@/lib/auth-client';
 
 export function UpdateUserModal() {
-    const onSbumit =async (e) =>{
+    const onSubmit =async (e) =>{
         e.preventDefault();
         const name = e.target.name.value;
         const image = e.target.image.value;
@@ -35,7 +35,7 @@ export function UpdateUserModal() {
             </Modal.Header>
             <Modal.Body className="p-6">
               <Surface variant="default">
-                <form onSubmit={onSbumit} className="flex flex-col gap-4">
+                <form onSubmit={onSubmit} className="flex flex-col gap-4">
                   <TextField className="w-full" name="name" type="text">
                     <Label>Name</Label>
                     <Input placeholder="Enter your name" />
