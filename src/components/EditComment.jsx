@@ -32,7 +32,7 @@ export function EditComment({id, data,refreshComments}) {
   return (
     <Modal>
       <Button variant="secondary" className={'bg-green-500 text-white'}>
-       Edit Comment
+       Edit
       </Button>
 
       <Modal.Backdrop>

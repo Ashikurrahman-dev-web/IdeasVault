@@ -1,4 +1,5 @@
 "use client"
+import { DeleteComment } from '@/components/DeleteComment';
 import { EditComment } from '@/components/EditComment';
 import {useEffect, useState} from 'react';
 
@@ -25,12 +26,13 @@ const fetchComments = async () => {
     className="bg-gray-300 rounded-2xl shadow-sm mx-auto p-4"
   >
     <p>{comment.comment}</p>
-
+<div className='flex justify-center gap-2'>
     <EditComment
       id={comment._id}
       data={comment}
       refreshComments={fetchComments}
     />
+    <DeleteComment id={comment._id} refreshComments={fetchComments}/></div>
   </div>
 ))}  
         </div>

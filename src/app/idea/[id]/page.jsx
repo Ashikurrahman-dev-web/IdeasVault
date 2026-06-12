@@ -2,7 +2,7 @@
 import { DeleteIdea } from '@/components/DeleteIdea';
 import {EditModal} from '@/components/EditIdea';
 import React from 'react';
-
+import Link from 'next/link';
 const Details = async ({ params }) => {
     const { id } = await params;
     const res = await fetch(`http://localhost:5000/ideaData/${id}`);
@@ -62,6 +62,11 @@ const Details = async ({ params }) => {
               {idea.description}
             </p>
           </div>
+         <Link href="/">
+              <button className="mt-6 cursor-pointer bg-green-500 text-white px-6 py-3 rounded-full font-medium hover:bg-green-600 transition shadow-sm">
+                Back to Home
+              </button>
+            </Link>
         </div>
         <EditModal id={idea._id} data={idea} /> <DeleteIdea id={idea._id} />
       </div>
