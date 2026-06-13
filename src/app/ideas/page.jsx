@@ -52,7 +52,7 @@ className="w-full md:w-1/2 border px-4 py-2 rounded-xl outline-none focus:ring-2
           Search
         </button>
       </div>
-<p className="font-bold text-green-500">Selected Category: <span>{category}</span></p>
+<p className="font-bold">Selected Category: <span className="text-green-500">{category}</span></p>
       <select
   value={category}
   onChange={(e) => setCategory(e.target.value)}

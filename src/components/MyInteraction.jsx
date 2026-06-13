@@ -18,31 +18,22 @@ const user = userData?.user;
             className="bg-gray-300 rounded-2xl p-4"
           >
             <div className="flex items-center gap-2">
-<div className="flex gap-4 items-center">
-
-        <Avatar size="sm">
-
-  <Avatar.Image
-
-    alt={user?.name || "User"}
-
-    src={user?.image}
-
-    referrerPolicy="no-referrer"
-
-  />
-
-
-
-  <Avatar.Fallback>
-
-    {user?.name?.[0] || "U"}
-
-  </Avatar.Fallback>
-
+<div className="flex flex-col gap-4 items-center">
+<Avatar size="sm">
+<Avatar.Image
+alt={user?.name || "User"}
+src={user?.image}
+ referrerPolicy="no-referrer"
+ />
+<Avatar.Fallback>
+{user?.name?.[0] || "U"}
+</Avatar.Fallback>
 </Avatar>
-
-        <span className="text-green-500 shadow-sm">{user?.name}</span></div>
+<span className="text-green-500 shadow-sm">{user?.name}</span>
+<p className="text-xs text-gray-500">
+  {new Date(comment.createdAt).toLocaleString()}
+</p>
+</div>
               <p>{comment.comment}</p>
             </div>
 

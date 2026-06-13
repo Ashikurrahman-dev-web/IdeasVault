@@ -7,7 +7,10 @@ const CommentSection = ({ refreshComments }) => {
     const onSubmit = async (e) => {
   e.preventDefault();
   const formData = new FormData(e.currentTarget);
-  const commentData = Object.fromEntries(formData.entries());
+    const commentData = {
+      ...Object.fromEntries(formData.entries()),
+      createdAt: new Date().toISOString(),
+    };
   const res = await fetch('http://localhost:5000/commentData', {
     method: 'POST',
     headers: {

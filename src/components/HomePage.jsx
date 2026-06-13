@@ -1,5 +1,5 @@
 "use client";
-import {useState, useEffect} from "react";
+import {useState, useEffect,useRef} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -11,6 +11,9 @@ import a from "@/image/a.png";
 import b from "@/image/b.png";
 import c from "@/image/c.png";
 import { Cpu, Brain, Vote, BookOpen, Shield,Container  } from 'lucide-react';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 const HomePage = () => {
   const [ideas, setIdeas] = useState([]);
   useEffect(() => {
@@ -25,6 +28,44 @@ const HomePage = () => {
     };
     fetchIdeas();
   }, []);
+  
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".idea", {
+        opacity: 0,
+        y: -50,
+        filter: "blur(10px)",
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: ".idea",
+          start: "top 85%",
+        },
+      });
+      gsap.from(".example", {
+        opacity: 0,
+        x: -50,
+        filter: "blur(10px)",
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: ".example",
+          start: "top 85%",
+        },
+      });
+      gsap.from(".started", {
+        opacity: 0,
+        y: -50,
+        filter: "blur(10px)",
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: ".started",
+          start: "top 85%",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
 const categories = [
     { id: 1, name: 'Technology', icon: <Cpu className="w-6 h-6" /> },
     { id: 2, name: 'Artificial Intelligence', icon: <Brain className="w-6 h-6" /> },
@@ -105,7 +146,7 @@ const standardCategories = [
         ))}
       </Swiper>
     </div>
-    <div className="mt-16">
+    <div className="idea mt-16">
   <div className="text-center mb-12">
     <h2 className="text-4xl font-bold">Latest Ideas</h2>
     <p className="text-gray-500 mt-3">
@@ -168,7 +209,7 @@ className="bg-white border-2rounded-3xl overflow-hidden shadow-md hover:shadow-2
     ))}
   </div>
 </div>
-<div className="py-16 px-4">
+<div className="example py-16 px-4">
       <div className="max-w-6xl mx-auto text-center">
         {/* Header Section */}
         <h2 className="text-3xl font-bold text-gray-900 mb-2">
@@ -190,7 +231,7 @@ className="flex flex-col items-center justify-center p-6 bg-gray-50/50 rounded-x
                 {category.icon}
               </div>
               {/* Text */}
-              <span className="text-sm font-semibold text-gray-800">
+              <span className="text-sm font-semibold text-green-500">
                 {category.name}
               </span>
             </div>
@@ -198,7 +239,7 @@ className="flex flex-col items-center justify-center p-6 bg-gray-50/50 rounded-x
         </div>
       </div>
     </div>
-    <div className="py-16 px-4">
+    <div className="started py-16 px-4">
 <div className="max-w-6xl mx-auto text-center">
         {/* Header Section */}
         <h2 className="text-3xl font-bold text-gray-900 mb-2">
@@ -216,11 +257,11 @@ className="flex flex-col items-center justify-center p-6 bg-gray-50/50 rounded-x
 className="flex flex-col items-center justify-center p-6 bg-gray-50/50 rounded-xl border-2 border-green-500 duration-300 shadow-sm"
             >
               {/* Icon Container */}
-              <div className="mb-3 text-2xl font-bold">
+              <div className="mb-3 text-2xl font-bold text-green-500">
                 {standard.name}
               </div>
               {/* Text */}
-              <span className="text-sm text-gray-800">
+              <span className="text-sm text-gray-500">
                 {standard.description}
               </span>
             </div>
