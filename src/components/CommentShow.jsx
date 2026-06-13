@@ -11,7 +11,6 @@ const fetchComments = async () => {
   const data = await res.json();
   setComments(data);
 };
-
 useEffect(() => {
   fetchComments();
 }, []);

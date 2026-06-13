@@ -1,10 +1,19 @@
-
 import React from 'react';
 import Link from 'next/link';
 import CommentShow from '@/components/CommentShow';
-const Details = async ({ params }) => {
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+const Details = async ({ params }) => { 
     const { id } = await params;
-    const res = await fetch(`http://localhost:5000/ideaData/${id}`);
+    const {token} = await auth.api.getToken({
+      headers: await headers()
+   })
+   
+    const res = await fetch(`http://localhost:5000/ideaData/${id}`,{
+      headers:{
+        authorization: `Bearer ${token}`
+      }
+    });
     const idea = await res.json();
     return (
        <section className="max-w-6xl mx-auto px-6 py-12">
