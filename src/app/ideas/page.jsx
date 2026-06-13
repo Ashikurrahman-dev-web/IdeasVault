@@ -2,7 +2,7 @@
 import {useState, useEffect} from "react"; 
 import Link from "next/link"; 
 import Image from "next/image";
-import { Select, ListBox, Label} from "@heroui/react";
+
  const Idea = () => { 
   const [ideas, setIdeas] = useState([]);
 const [search, setSearch] = useState("");
@@ -21,17 +21,8 @@ useEffect(() => {
 
   fetchIdeas();
 }, []);
-console.log(category);
-console.log(ideas);
 const filteredIdeas = ideas.filter((idea) => {
-  console.log(
-    "DB:",
-    idea.category,
-    "Selected:",
-    category
-  );
-
-  return (
+return (
     (idea?.title || "")
       .toLowerCase()
       .includes(query.toLowerCase()) &&

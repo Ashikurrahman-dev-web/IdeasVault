@@ -10,6 +10,7 @@ const MyInteraction = ({comments= [],refreshComments}) => {
 const user = userData?.user;
   return (
     <div className="max-w-7xl mx-auto mt-8 mb-8">
+      <p>Comments({comments.length})</p>
       <div className="grid lg:grid-cols-2 gap-8">
         {comments.map((comment) => (
           <div
