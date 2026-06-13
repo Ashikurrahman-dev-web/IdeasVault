@@ -1,5 +1,6 @@
 "use client";
 import { AlertDialog, Button } from "@heroui/react";
+import toast from "react-hot-toast";
 
 export function DeleteComment({ id,refreshComments }) {
  const handleDelete = async () => {
@@ -13,6 +14,7 @@ export function DeleteComment({ id,refreshComments }) {
     if (data.deletedCount > 0) {
      await refreshComments();
     }
+    toast.success("❌ Delete Confirmed")
   };
 
   return (

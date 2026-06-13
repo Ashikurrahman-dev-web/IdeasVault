@@ -1,5 +1,4 @@
-import { DeleteIdea } from '@/components/DeleteIdea';
-import {EditModal} from '@/components/EditIdea';
+
 import React from 'react';
 import Link from 'next/link';
 import CommentShow from '@/components/CommentShow';
@@ -68,7 +67,7 @@ const Details = async ({ params }) => {
               </button>
             </Link>
         </div>
-        <EditModal id={idea._id} data={idea} /> <DeleteIdea id={idea._id} />
+        
       </div>
       <CommentShow />
     </section>

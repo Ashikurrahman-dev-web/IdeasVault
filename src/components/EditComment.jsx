@@ -8,6 +8,7 @@ import {
   Surface,
   TextField,
 } from "@heroui/react";
+import toast from "react-hot-toast";
 
 export function EditComment({id, data,refreshComments}) {
     
@@ -27,6 +28,7 @@ export function EditComment({id, data,refreshComments}) {
          if (result.modifiedCount > 0) {
        await refreshComments();
     };
+    toast.success("Successfully Edited")
     };
   const comment = data?.comment || "";
   return (

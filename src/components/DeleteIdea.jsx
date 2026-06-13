@@ -1,6 +1,7 @@
 "use client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export function DeleteIdea({ id }) {
   const router = useRouter()
@@ -15,6 +16,7 @@ export function DeleteIdea({ id }) {
     if (data.deletedCount > 0) {
      router.push("/ideas");
     }
+    toast.success("❌ Delete Confirmed")
   };
 
   return (

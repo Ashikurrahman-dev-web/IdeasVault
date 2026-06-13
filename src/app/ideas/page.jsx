@@ -8,6 +8,7 @@ import Image from "next/image";
 const [search, setSearch] = useState("");
 const [query, setQuery] = useState("");
 const [category, setCategory] = useState("");
+const [loading, setLoading] = useState(true);
 useEffect(() => {
   const fetchIdeas = async () => {
     try {
@@ -16,11 +17,22 @@ useEffect(() => {
       setIdeas(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   fetchIdeas();
 }, []);
+if (loading) {
+  return (
+    <div className="flex justify-center items-center min-h-screen">
+<div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin">
+  <p>Loading...</p>
+</div>
+    </div>
+  );
+}
 const filteredIdeas = ideas.filter((idea) => {
 return (
     (idea?.title || "")

@@ -11,6 +11,7 @@ import {
   Select,
   ListBox,
 } from "@heroui/react";
+import toast from "react-hot-toast";
 
 export function EditModal({id, data}) {
   const { title, tag, imageUrl, shortDescription, targetAudience, problemStatement, proposedSolution,
@@ -32,6 +33,7 @@ const onSubmit = async (e) => {
          if (data.modifiedCount > 0) {
       router.refresh(); 
     };
+    toast.success("Successfully Edited")
     }
   return (
     <Modal>

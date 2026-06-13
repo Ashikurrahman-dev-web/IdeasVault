@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
+import { DeleteIdea } from '@/components/DeleteIdea';
+import {EditModal} from '@/components/EditIdea';
 const MyIdea = async() => {
     const res =  await fetch('http://localhost:5000/myIdeas');
     const ideas = await res.json();
@@ -54,8 +56,11 @@ className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl trans
                         View Details
                       </button>
                     </Link>
+                   
                   </div>
+                  <EditModal id={idea._id} data={idea} /> <DeleteIdea id={idea._id} />
                 </div>
+                 
               </div>
             ))}
           </div>
