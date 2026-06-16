@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IdeasVault 🚀
 
-## Getting Started
+IdeasVault is a full-stack web application where users can create, manage, and interact with ideas. Users can securely authenticate using Email/Password or Google Login, share ideas, comment on ideas, and manage their own content through a protected dashboard.
 
-First, run the development server:
+## Live Site
+
+🔗 Live URL: [Add Your Live Link Here]
+
+## Features
+
+* 🔐 JWT Authentication with Better Auth
+* 📧 Email & Password Authentication
+* 🌐 Google Social Login
+* 🛡️ Protected Routes using Next.js Middleware
+* ↪️ Redirect to desired route after successful login
+* 💡 Create, Read, Update, and Delete Ideas
+* 💬 Comment System
+* 👤 User Profile Management
+* 📱 Fully Responsive Design
+* 🎨 Modern UI built with HeroUI
+* ⚡ Fast performance with Next.js 16
+
+## Technologies Used
+
+### Frontend
+
+* Next.js 16
+* React
+* Tailwind CSS
+* HeroUI
+* React Hot Toast
+* Swiper.js
+* Better Auth Client
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Better Auth
+* JWT Authentication
+* JOSE (JWT Verification)
+
+## Authentication & Security
+
+### Authentication Methods
+
+* Email/Password Login
+* Google Login
+
+### Security Features
+
+* JWT-based Authentication
+* Protected API Routes
+* Protected Client Routes
+* Session Management
+* Route Redirection After Login
+
+## Installation
+
+### Clone the Repository
+
+```bash
+git clone <repository-url>
+cd ideasvault
+```
+
+### Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+### Install Backend Dependencies
+
+```bash
+npm install
+```
+
+## Environment Variables
+
+Create a `.env.local` file in the client project:
+
+```env
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+MONGODB_URI=your_mongodb_uri
+BETTER_AUTH_SECRET=your_secret
+BETTER_AUTH_URL=http://localhost:3000
+```
+
+Create a `.env` file in the server project:
+
+```env
+MONGO_URI=your_mongodb_uri
+PORT=5000
+```
+
+## Run Locally
+
+### Frontend
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+nodemon index.js
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```plaintext
+ideasvault/
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── providers/
+│   └── middleware.js
+│
+├── public/
+├── server/
+│   ├── index.js
+│   └── routes/
+│
+└── README.md
+```
 
-To learn more about Next.js, take a look at the following resources:
+## API Endpoints
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Ideas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* GET `/ideaData`
+* GET `/ideaData/:id`
+* POST `/ideaData`
+* PATCH `/ideaData/:id`
+* DELETE `/ideaData/:id`
 
-## Deploy on Vercel
+### Comments
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* GET `/commentData`
+* POST `/commentData`
+* PATCH `/commentData/:id`
+* DELETE `/commentData/:id`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Protected Routes
+
+* `/addidea`
+* `/myideas`
+* `/myinteractions`
+* `/idea/:id`
+
+Unauthenticated users are automatically redirected to the login page and returned to their desired route after successful authentication.
+
+## Future Improvements
+
+* Idea Categories
+* Idea Search & Filtering
+* User Notifications
+* Like & Bookmark System
+* Admin Dashboard
+
+## Author
+
+Ashikur Rahman
+
+## License
+
+This project is created for educational purposes.
