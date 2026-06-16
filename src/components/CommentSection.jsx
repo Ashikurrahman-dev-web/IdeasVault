@@ -12,7 +12,7 @@ const CommentSection = ({ refreshComments }) => {
       ...Object.fromEntries(formData.entries()),
       createdAt: new Date().toISOString(),
     };
-    const {data:tokenData} = await authClient.token() 
+    const {data:tokenData} = await authClient.token()
   const res = await fetch('http://localhost:5000/commentData', {
     method: 'POST',
     headers: {

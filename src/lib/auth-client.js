@@ -7,9 +7,6 @@ export const authClient = createAuthClient({
     jwtClient()
   ]
 });
-console.log(authClient);
-console.log(authClient.getAccessToken);
-console.log(authClient.jwt);
 export const {
   signIn,
   signUp,

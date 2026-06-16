@@ -1,13 +1,16 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import toast from "react-hot-toast";
 
 export function DeleteComment({ id,refreshComments }) {
  const handleDelete = async () => {
+  const {data:tokenData} = await authClient.token()
      const res = await fetch(`http://localhost:5000/commentData/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+         authorization: `Bearer ${tokenData?.token}`
       },
     });
     const data = await res.json();

@@ -135,7 +135,7 @@ const standardCategories = [
 <p className="max-w-2xl text-sm md:text-lg text-gray-200">
                   {slide.description}
                 </p>
-    <Link href="/myideas">
+    <Link href="/ideas">
               <button className="mt-6 cursor-pointer bg-green-500 text-white px-6 py-3 rounded-full font-medium hover:bg-green-600 transition shadow-sm">
                 Explore Ideas
               </button>

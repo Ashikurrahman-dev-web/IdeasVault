@@ -3,8 +3,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { DeleteIdea } from '@/components/DeleteIdea';
 import {EditModal} from '@/components/EditIdea';
+import { headers } from 'next/headers';
+import { auth } from '@/lib/auth';
 const MyIdea = async() => {
-    const res =  await fetch('http://localhost:5000/myIdeas');
+  const {token} = await auth.api.getToken({
+        headers: await headers()
+     })
+    const res =  await fetch('http://localhost:5000/myIdeas',{
+       headers:{
+              authorization: `Bearer ${token}`
+            }
+    });
     const ideas = await res.json();
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-8">
