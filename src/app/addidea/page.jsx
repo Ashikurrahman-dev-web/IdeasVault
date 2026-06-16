@@ -2,22 +2,27 @@
 import React, { useState } from 'react';
 import {Button, FieldError, Select, ListBox, Input, Label,TextArea, TextField} from "@heroui/react";
 import toast from 'react-hot-toast';
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 const AddIdea = () => {
+  const router = useRouter()
   const [isAdded, setIsAdded]= useState(false);
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const ideaData = Object.fromEntries(formData.entries());
-        
+   const {data:tokenData} = await authClient.token()     
  const res=await fetch('http://localhost:5000/ideaData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+         authorization: `Bearer ${tokenData?.token}`
       },
       body: JSON.stringify(ideaData), 
     });
     setIsAdded(true);
     toast.success("✅ Idea Added Successfully in My Ideas Page!");
+    router.push("/myideas")
         const data = await res.json();
     }
     return (

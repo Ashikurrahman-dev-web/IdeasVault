@@ -34,7 +34,7 @@ useEffect(() => {
   };
  const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <nav className="px-6 md:px-8 py-4 bg-white border-b border-gray-100">
+    <nav className="px-6 md:px-8 py-4 bg-white border-b border-gray-100 mb-4">
       <div className="flex items-center justify-between">
   <div className='flex items-center gap-3 group'>      
 <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-primary/20 border border-outline-variant/20 dark:border-white/10">
@@ -83,24 +83,41 @@ useEffect(() => {
           <div className="w-10 h-5 bg-surface-container-high rounded-full animate-pulse" />
         )}
          {user && (
-  <div className="flex gap-4 items-center">
-    <Avatar size="sm">
-                <Avatar.Image alt={user.name} src={user?.image} referrerPolicy="no-referrer" />
-                <Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
-  </Avatar>  <span className="text-gray-700">{user?.name}</span>
-  <Dropdown>
-      <Button aria-label="Menu" variant="secondary">
-        <Select.Indicator className="text-green-500" />
-      </Button>
-      <Dropdown.Popover>
-        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-          <Dropdown.Item id="Profile" textValue="Profile">
-            <Link href={"/profile"}>Profile </Link>
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown.Popover>
-    </Dropdown>
+  <div className="flex items-center gap-3">
+  <div className="relative">
+    <Avatar size="lg">
+      <Avatar.Image
+        alt={user?.name}
+        src={user?.image}
+        referrerPolicy="no-referrer"
+      />
+      <Avatar.Fallback>{user?.name?.[0]}</Avatar.Fallback>
+    </Avatar>
+
+    {/* Small icon */}
+    <div className="absolute -bottom-1 z-10">
+      <Dropdown>
+        <Button
+          aria-label="Menu"
+          variant="secondary"
+          className="min-w-0 w-6 h-6 rounded-full p-0"
+        >
+          <Select.Indicator className="text-green-500 text-xs" />
+        </Button>
+
+        <Dropdown.Popover>
+          <Dropdown.Menu>
+            <Dropdown.Item id="profile">
+              <Link href="/profile">Profile</Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown.Popover>
+      </Dropdown>
+    </div>
   </div>
+
+  <span className="text-gray-700">{user?.name}</span>
+</div>
 )}
       </div> 
       <div className="flex items-center space-x-4 md:space-x-6">

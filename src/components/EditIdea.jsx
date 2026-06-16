@@ -12,6 +12,7 @@ import {
   ListBox,
 } from "@heroui/react";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 export function EditModal({id, data}) {
   const { title, tag, imageUrl, shortDescription, targetAudience, problemStatement, proposedSolution,
@@ -21,10 +22,12 @@ const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const ideaData = Object.fromEntries(formData.entries());
+        const {data:tokenData} = await authClient.token() 
         const res=await fetch(`http://localhost:5000/ideaData/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
+        authorization: `Bearer ${tokenData?.token}`
       },
       body: JSON.stringify(ideaData),
     });

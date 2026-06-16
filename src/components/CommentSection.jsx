@@ -2,6 +2,7 @@
 import { useState } from "react";
 import {Button, Label,TextArea, TextField} from "@heroui/react";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 const CommentSection = ({ refreshComments }) => {
   const [isPost, setIsPost] = useState(false);
     const onSubmit = async (e) => {
@@ -11,10 +12,12 @@ const CommentSection = ({ refreshComments }) => {
       ...Object.fromEntries(formData.entries()),
       createdAt: new Date().toISOString(),
     };
+    const {data:tokenData} = await authClient.token() 
   const res = await fetch('http://localhost:5000/commentData', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      authorization: `Bearer ${tokenData?.token}`
     },
     body: JSON.stringify(commentData),
   });

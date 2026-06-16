@@ -7,6 +7,7 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { GrGoogle } from "react-icons/gr";
 import {FaEye, FaEyeSlash } from "react-icons/fa";
+import Link from "next/link";
 const SignIn = () => {
  
     const router = useRouter();
@@ -116,14 +117,19 @@ const [isShowPassword, setIsShowPassword] = useState(false);
           Reset
         </Button>
       </div>
-    </Form>
+      <p className="text-green-500">Forget Password</p>
+    </Form>  
      <p className="text-center text-2xl text-green-500">OR</p>
-
-      <Button onClick={handleGoogleSignIn} className="w-full bg-green-500">
+<Button onClick={handleGoogleSignIn} className="w-full bg-green-500">
         <GrGoogle />
         Sign In With Google
-      </Button>   
-    </div> 
+      </Button>
+        
+     <div className='flex justify-center items-center gap-1'>
+         <p>Don't Have An Account?</p> 
+         
+            <Link href="/signup" className='cursor-pointer text-green-500'>Sign Up</Link></div> 
+            </div> 
     );
 };
 
