@@ -10,11 +10,23 @@ export async function proxy(request) {
         const { pathname } = request.nextUrl;
 
         
-        if (!session && (pathname === '/addidea' || pathname === '/myideas'|| pathname === '/myinteractions' || pathname.startsWith('/idea/'))) {
-            return NextResponse.redirect(new URL('/login', request.url));
-        }
+if (
+  !session &&
+  (
+    pathname === '/addidea' ||
+    pathname === '/myideas' ||
+    pathname === '/myinteractions' ||
+    pathname.startsWith('/idea/')
+  )
+) {
+  const loginUrl = new URL('/login', request.url);
 
-        return NextResponse.next();
+  loginUrl.searchParams.set('redirect', pathname);
+
+  return NextResponse.redirect(loginUrl);
+}
+
+  return NextResponse.next();       
     } catch (e) {
         return NextResponse.next();
     }

@@ -128,7 +128,7 @@ useEffect(() => {
                 SignIn
               </Link>
               <Link href={"/signup"} className="cursor-pointer hidden md:block bg-green-500 text-white px-6 py-2 rounded-full font-medium hover:bg-green-600 transition shadow-sm">
-                Sign Up
+                SignUp
               </Link>
             </>
           )}
@@ -138,7 +138,7 @@ useEffect(() => {
                 onClick={handleLogout}
 className="cursor-pointer hidden md:block bg-green-500 text-white px-6 py-2 rounded-full font-medium hover:bg-green-600 transition shadow-sm"
                 >
-                Logout
+              SignOut
               </button>
             </div>
           )}

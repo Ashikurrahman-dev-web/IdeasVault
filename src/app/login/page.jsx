@@ -4,12 +4,13 @@ import {Button, Description, FieldError, Form, Input, Label, TextField} from "@h
 import {useState} from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { GrGoogle } from "react-icons/gr";
 import {FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 const SignIn = () => {
- 
+const searchParams = useSearchParams();
+const redirectPath = searchParams.get("redirect") || "/";
     const router = useRouter();
  const onSubmit = async (e) => {
     e.preventDefault();
@@ -21,19 +22,16 @@ const SignIn = () => {
         await authClient.signIn.email({
           email: user.email,
           password: user.password,
-          callbackURL: "/",
+          callbackURL: redirectPath,
         
         });
       if (error) {
         toast.error(error.message);
         return;
       }
-
-      toast.success("✅ Sign In Successful!");
-
-      router.push("/");
-
-    } catch (err) {
+toast.success("✅ Sign In Successful!");
+router.push(redirectPath);
+ } catch (err) {
       toast.error("❌ Sign In Failed!");
       console.log(err);
     }
@@ -42,7 +40,7 @@ const SignIn = () => {
   try {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/",
+      callbackURL: redirectPath,
     });
   } catch (err) {
     toast.error("❌ Google Login Failed!");
