@@ -1,28 +1,27 @@
 "use client";
 import { useTheme } from "next-themes";
 import { authClient } from "@/lib/auth-client";
-import  { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import NavLink from "@/components/NavLink";
 import Image from 'next/image';
 import Link from 'next/link';
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Avatar,Button, Dropdown,Select } from '@heroui/react';
-const Navbar = () => {
-    const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-useEffect(() => {
-    const timeout = setTimeout(() => {
-      setMounted(true);
-    }, 0);
+import { Avatar, Button, Dropdown, Select } from '@heroui/react';
 
-    return () => clearTimeout(timeout);
-  }, []);
+const NavbarAuth = () => {
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
   const router = useRouter();
-  const { data: userData } = authClient.useSession();
-  const user = userData?.user;
-  console.log(user);
+  const [menuOpen, setMenuOpen] = useState(false);
+const { data: userData } = authClient.useSession();
+const user = mounted ? userData?.user : null;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const handleLogout = async () => {
     try {
       await authClient.signOut();
@@ -32,7 +31,6 @@ useEffect(() => {
       toast.error("Logout failed!");
     }
   };
- const [menuOpen, setMenuOpen] = useState(false);
   return (
     <nav className="px-6 md:px-8 py-4 bg-white border-b border-gray-100 mb-4">
       <div className="flex items-center justify-between">
@@ -194,4 +192,4 @@ className="cursor-pointer hidden md:block bg-green-500 text-white px-6 py-2 roun
   );
 };
 
-export default Navbar;
+export default NavbarAuth;

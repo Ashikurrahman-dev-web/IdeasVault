@@ -2,9 +2,17 @@
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import Image from 'next/image';
+import { useEffect, useState } from "react";
 const Footer = () => {
-  const { data: userData } = authClient.useSession();
-    const user = userData?.user;
+const { data: userData } = authClient.useSession();
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    if (userData?.user) {
+      setUser(userData.user);
+    } else {
+      setUser(null);
+    }
+  }, [userData]);
   return (
     <footer className="border-t border-gray-800 text-gray-600 px-6 md:px-16 py-16">
       <div className="max-w-7xl mx-auto">
