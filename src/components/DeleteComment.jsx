@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 export function DeleteComment({ id,refreshComments }) {
  const handleDelete = async () => {
   const {data:tokenData} = await authClient.token()
-     const res = await fetch(`http://localhost:5000/commentData/${id}`, {
+     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/commentData/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

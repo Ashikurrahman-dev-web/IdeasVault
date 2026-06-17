@@ -10,7 +10,7 @@ export default function Page() {
   const fetchComments = async () => {
     const {data:tokenData} = await authClient.token()
     const res = await fetch(
-      "http://localhost:5000/commentData",{
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/commentData`,{
     headers:{
       authorization: `Bearer ${tokenData?.token}`
     }

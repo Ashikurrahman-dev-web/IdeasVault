@@ -12,7 +12,7 @@ const AddIdea = () => {
         const formData = new FormData(e.currentTarget);
         const ideaData = Object.fromEntries(formData.entries());
    const {data:tokenData} = await authClient.token()     
- const res=await fetch('http://localhost:5000/ideaData', {
+ const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/ideaData`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

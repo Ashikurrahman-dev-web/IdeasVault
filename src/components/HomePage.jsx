@@ -19,7 +19,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchIdeas = async () => {
       try {
-        const res = await fetch("http://localhost:5000/featuredIdeas");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/featuredIdeas`);
         const data = await res.json();
         setIdeas(data);
       } catch (error) {

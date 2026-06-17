@@ -8,7 +8,7 @@ export function DeleteIdea({ id }) {
   const router = useRouter()
  const handleDelete = async () => {
   const {data:tokenData} = await authClient.token()
-     const res = await fetch(`http://localhost:5000/ideaData/${id}`, {
+     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/ideaData/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

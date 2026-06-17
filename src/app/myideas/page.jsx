@@ -9,7 +9,7 @@ const MyIdea = async() => {
   const {token} = await auth.api.getToken({
         headers: await headers()
      })
-    const res =  await fetch('http://localhost:5000/myIdeas',{
+    const res =  await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/myIdeas`,{
        headers:{
               authorization: `Bearer ${token}`
             }
