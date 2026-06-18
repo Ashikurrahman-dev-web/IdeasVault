@@ -95,11 +95,11 @@ const onSubmit = async (e) => {
                             Technology
                           </ListBox.Item>
 
-                          <ListBox.Item id="Artificial Intelligence" textValue="ArtificialIntelligence">
+                          <ListBox.Item id="ArtificialIntelligence" textValue="ArtificialIntelligence">
                             ArtificialIntelligence
                           </ListBox.Item>
 
-                          <ListBox.Item id="Cyber Security" textValue="CyberSecurity">
+                          <ListBox.Item id="CyberSecurity" textValue="CyberSecurity">
                             CyberSecurity
                           </ListBox.Item>
 
