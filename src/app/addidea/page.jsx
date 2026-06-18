@@ -69,12 +69,12 @@ const AddIdea = () => {
                   Technology
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
-                <ListBox.Item id="ArtificialIntelligence" textValue="ArtificialIntelligence">
-                  ArtificialIntelligence
+                <ListBox.Item id="Artificial Intelligence" textValue="Artificial Intelligence">
+                  Artificial Intelligence
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
-                <ListBox.Item id="CyberSecurity" textValue="CyberSecurity">
-                  CyberSecurity
+                <ListBox.Item id="Cyber Security" textValue="Cyber Security">
+                  Cyber Security
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
                 <ListBox.Item id="Environment" textValue="Environment">
