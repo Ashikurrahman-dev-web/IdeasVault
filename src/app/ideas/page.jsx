@@ -73,8 +73,8 @@ className="w-full md:w-1/2 border px-4 py-2 rounded-xl outline-none focus:ring-2
   <option value="Politics">Politics</option>
   <option value="Education">Education</option>
   <option value="Technology">Technology</option>
-  <option value=" Artificial Intelligence"> Artificial Intelligence</option>
-  <option value=" Cyber Security">Cyber Security</option>
+  <option value=" ArtificialIntelligence"> Artificial Intelligence</option>
+  <option value=" CyberSecurity">Cyber Security</option>
   <option value="Environment">Environment</option>
   </select>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">

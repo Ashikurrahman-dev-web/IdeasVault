@@ -36,7 +36,6 @@ const AddIdea = () => {
     const data = await res.json();
   };
 
-  // সার্ভার সাইড বা বিল্ড টাইমে রেন্ডারিং এড়ানোর জন্য সেফগার্ড
   if (!mounted) {
     return <div className="p-10 text-center text-gray-500 font-medium">Loading Add Idea Form...</div>;
   }
@@ -70,11 +69,11 @@ const AddIdea = () => {
                   Technology
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
-                <ListBox.Item id="Artificial Intelligence" textValue="Artificial Intelligence">
+                <ListBox.Item id="Artificial Intelligence" textValue="ArtificialIntelligence">
                   Artificial Intelligence
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
-                <ListBox.Item id="Cyber Security" textValue="Cyber Security">
+                <ListBox.Item id="Cyber Security" textValue="CyberSecurity">
                   Cyber Security
                   <ListBox.ItemIndicator />
                 </ListBox.Item>
