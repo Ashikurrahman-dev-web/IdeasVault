@@ -1,6 +1,6 @@
 "use client";
 import {Check} from "@gravity-ui/icons";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import {Button, Description, FieldError, Form, Input, Label, TextField,Card} from "@heroui/react";
 import {useState} from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
@@ -49,11 +49,11 @@ router.push(redirectPath);
 };
 const [isShowPassword, setIsShowPassword] = useState(false);
     return (
-     <div className="max-w-7xl mx-auto mt-8 mb-8 items-center"> 
-     <div>
-<h1 className="text-green-500 text-3xl font-bold mb-4">Sign In</h1>
-<p className="text-gray-600 mb-6">Sign in to your account to continue.</p>
-        </div> 
+    <Card className="border mx-auto w-[420px] py-8 px-6 mt-10 shadow-lg rounded-2xl">
+     
+<h1 className="text-center text-green-500 text-3xl font-bold mb-4">Sign In</h1>
+<p className="text-center text-gray-600 mb-6">Sign in to your account to continue.</p>
+        
 <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4 border border-gray-200 rounded-xl p-6 shadow-sm">
       <TextField
         isRequired
@@ -116,18 +116,18 @@ const [isShowPassword, setIsShowPassword] = useState(false);
         </Button>
       </div>
       <p className="text-green-500">Forget Password</p>
-    </Form>  
-     <p className="text-center text-2xl text-green-500">OR</p>
+      <p className="text-center text-2xl text-green-500">OR</p>
 <Button onClick={handleGoogleSignIn} className="w-full bg-green-500">
         <GrGoogle />
         Sign In With Google
       </Button>
-        
-     <div className='flex justify-center items-center gap-1'>
+      <div className='flex justify-center items-center gap-1'>
          <p>Don't Have An Account?</p> 
          
-            <Link href="/signup" className='cursor-pointer text-green-500'>Sign Up</Link></div> 
+            <Link href="/signup" className='cursor-pointer text-green-500'>Sign Up</Link>
             </div> 
+    </Form>  
+    </Card>
     );
 };
 

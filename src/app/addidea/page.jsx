@@ -19,7 +19,6 @@ const AddIdea = () => {
     const formData = new FormData(e.currentTarget);
     const ideaData = Object.fromEntries(formData.entries());
     
-    // ফর্ম সাবমিটের সময় টোকেন কল করা নিরাপদ
     const { data: tokenData } = await authClient.token();     
     
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/ideaData`, {

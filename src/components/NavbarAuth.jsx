@@ -181,7 +181,7 @@ className="cursor-pointer hidden md:block bg-green-500 text-white px-6 py-2 roun
                   onClick={handleLogout}
                   className="bg-green-500 text-white py-2 rounded-full cursor-pointer hover:bg-green-600 transition"
                 >
-                  Logout
+                 SignOut
                 </button>
               </div>
             )}

@@ -1,6 +1,6 @@
 "use client";
 import {Check} from "@gravity-ui/icons";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import {Button, Description, FieldError, Form, Input, Label, TextField,Card} from "@heroui/react";
 import {useState} from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
@@ -39,11 +39,11 @@ const SignUp = () => {
  };
  const [isShowPassword, setIsShowPassword] = useState(false);  
     return (
-     <div className="max-w-7xl mx-auto mt-8 mb-8 items-center"> 
-     <div>
-<h1 className="text-green-500 text-3xl font-bold mb-4">Sign Up</h1>
-<p className="text-gray-600 mb-6">Create an account to start sharing your ideas and collaborating with others.</p>
-        </div> 
+      <Card className="border mx-auto w-[420px] py-8 px-6 mt-10 shadow-lg rounded-2xl"> 
+    
+<h1 className="text-center text-green-500 text-3xl font-bold mb-4">Sign Up</h1>
+<p className="text-center text-gray-600 mb-6">Create an account to start sharing your ideas and collaborating with others.</p>
+        
 <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4 border border-gray-200 rounded-xl p-6 shadow-sm">
       <TextField
         isRequired
@@ -119,7 +119,7 @@ const SignUp = () => {
         </Button>
       </div>
     </Form>   
-    </div> 
+   </Card>
     );
 };
 
