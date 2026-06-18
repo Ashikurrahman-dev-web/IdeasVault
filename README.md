@@ -4,7 +4,7 @@ IdeasVault is a full-stack web application where users can create, manage, and i
 
 ## Live Site
 
-🔗 Live URL: [Add Your Live Link Here]
+🔗 Live URL: https://ideas-vault-alpha.vercel.app/
 
 ## Features
 
