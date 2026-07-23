@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { uploadImage } from '@/utils/uploadImage';
+import { FaCamera, FaUser } from 'react-icons/fa';
 
 const AddIdea = () => {
   const router = useRouter();

@@ -5,7 +5,7 @@ import {useState} from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import {FaEye, FaEyeSlash } from "react-icons/fa";
+import {FaCamera, FaEye, FaEyeSlash, FaUser } from "react-icons/fa";
 import { uploadImage } from "@/utils/uploadImage";
 const SignUp = () => {
     const router = useRouter();
