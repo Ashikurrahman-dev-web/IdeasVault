@@ -163,7 +163,7 @@ className="bg-white border-2rounded-3xl overflow-hidden shadow-md hover:shadow-2
         {/* Image */}
         <div className="relative h-56 overflow-hidden">
           <Image
-            src={idea.imageUrl}
+            src={idea.image}
             alt={idea.title}
             height={100}
             width={200}

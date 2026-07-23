@@ -20,7 +20,7 @@ const Details = async ({ params }) => {
       <div className="bg-white rounded-3xl overflow-hidden shadow-xl">
         <div className="relative h-[450px]">
           <img
-            src={idea.imageUrl}
+            src={idea.image}
             alt={idea.title}
             className="object-cover"
           />
