@@ -66,7 +66,7 @@ const handleImageChange = (e) => {
     <form className="p-10 space-y-8" onSubmit={onSubmit}>
       <div className="flex flex-col items-center gap-3 mb-4 w-full">
                         <div className="relative">
-<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-red-500 shadow-lg bg-slate-800">
+<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-green-500 shadow-lg bg-slate-800">
                                 {preview ? (
 <img src={preview} alt="Profile Preview" className="w-full h-full object-cover" />
                                 ) : (

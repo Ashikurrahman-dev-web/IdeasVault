@@ -70,7 +70,7 @@ const SignUp = () => {
 <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4 border border-gray-200 rounded-xl p-6 shadow-sm">
 <div className="flex flex-col items-center gap-3 mb-4 w-full">
                         <div className="relative">
-<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-red-500 shadow-lg bg-slate-800">
+<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-green-500 shadow-lg bg-slate-800">
                                 {preview ? (
 <img src={preview} alt="Profile Preview" className="w-full h-full object-cover" />
                                 ) : (
