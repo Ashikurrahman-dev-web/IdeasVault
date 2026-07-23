@@ -41,6 +41,7 @@ const handleImageChange = (e) => {
                setLoading(false);
                return;
            }; 
+ideaData.image = imageUrl;
     const { data: tokenData } = await authClient.token();     
     
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/ideaData`, {
@@ -80,7 +81,7 @@ const handleImageChange = (e) => {
                             </label>
                         </div>
 <input id="image" name="image" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
-                        <p className="text-xs text-green-500">Upload your profile picture</p>
+                        <p className="text-xs text-green-500">Upload your Idea's picture</p>
                     </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
