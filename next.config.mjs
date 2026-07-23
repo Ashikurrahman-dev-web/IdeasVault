@@ -1,14 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ["better-auth"],
-
+  /* config options here */
+  reactCompiler: true,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "**",
-        port: "",
-        pathname: "/**",
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
       },
     ],
   },
