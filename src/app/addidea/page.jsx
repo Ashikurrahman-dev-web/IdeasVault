@@ -4,21 +4,42 @@ import { Button, FieldError, Select, ListBox, Input, Label, TextArea, TextField 
 import toast from 'react-hot-toast';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { uploadImage } from '@/utils/uploadImage';
 
 const AddIdea = () => {
   const router = useRouter();
   const [isAdded, setIsAdded] = useState(false);
   const [mounted, setMounted] = useState(false); 
-
+const [preview, setPreview] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
   useEffect(() => {
     setMounted(true);
   }, []);
-
+const handleImageChange = (e) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImageFile(file);
+            setPreview(URL.createObjectURL(file));
+        }
+    };
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const ideaData = Object.fromEntries(formData.entries());
-    
+   let imageUrl = "";
+           if (imageFile) {
+               try {
+                   imageUrl = await uploadImage(imageFile);
+               } catch (uploadErr) {
+                   toast.error("Image upload failed!");
+                   setLoading(false);
+                   return;
+               }
+           } else {
+               toast.error("Please upload an avatar first");
+               setLoading(false);
+               return;
+           }; 
     const { data: tokenData } = await authClient.token();     
     
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/ideaData`, {
@@ -42,6 +63,24 @@ const AddIdea = () => {
 
   return (
     <form className="p-10 space-y-8" onSubmit={onSubmit}>
+      <div className="flex flex-col items-center gap-3 mb-4 w-full">
+                        <div className="relative">
+<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-red-500 shadow-lg bg-slate-800">
+                                {preview ? (
+<img src={preview} alt="Profile Preview" className="w-full h-full object-cover" />
+                                ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-500">
+                                        <FaUser size={32} />
+                                    </div>
+                                )}
+                            </div>
+<label htmlFor="image" className="absolute bottom-0 right-0 bg-green-500 hover:bg-green-600 text-white p-2 rounded-full cursor-pointer shadow-lg transition">
+                                <FaCamera size={12} />
+                            </label>
+                        </div>
+<input id="image" name="image" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+                        <p className="text-xs text-green-500">Upload your profile picture</p>
+                    </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <Select
@@ -138,18 +177,6 @@ const AddIdea = () => {
             <Label>Proposed Solution</Label>
             <Input
               placeholder="Proposed solution of the idea"
-              className="rounded-2xl text-gray-600"
-            />
-            <FieldError />
-          </TextField>
-        </div>
-
-        <div className="md:col-span-1">
-          <TextField name="imageUrl" isRequired>
-            <Label>Image URL</Label>
-            <Input
-              type="url"
-              placeholder="https://example.com/idea.jpg"
               className="rounded-2xl text-gray-600"
             />
             <FieldError />

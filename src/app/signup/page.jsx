@@ -6,18 +6,41 @@ import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import {FaEye, FaEyeSlash } from "react-icons/fa";
+import { uploadImage } from "@/utils/uploadImage";
 const SignUp = () => {
     const router = useRouter();
+    const [preview, setPreview] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
+     const handleImageChange = (e) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImageFile(file);
+            setPreview(URL.createObjectURL(file));
+        }
+    };
  const onSubmit = async (e) => {
     e.preventDefault();
   const formData = new FormData(e.currentTarget);
   const user = Object.fromEntries(formData.entries()); 
-  
+   let imageUrl = "";
+        if (imageFile) {
+            try {
+                imageUrl = await uploadImage(imageFile);
+            } catch (uploadErr) {
+                toast.error("Image upload failed!");
+                setLoading(false);
+                return;
+            }
+        } else {
+            toast.error("Please upload an avatar first");
+            setLoading(false);
+            return;
+        };
   try {
       const { data, error } =
         await authClient.signUp.email({
           name: user.name,
-          image: user.image,
+          image: imageUrl,
           email: user.email,
           password: user.password,
           callbackURL: "/login",
@@ -45,20 +68,30 @@ const SignUp = () => {
 <p className="text-center text-gray-600 mb-6">Create an account to start sharing your ideas and collaborating with others.</p>
         
 <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4 border border-gray-200 rounded-xl p-6 shadow-sm">
+<div className="flex flex-col items-center gap-3 mb-4 w-full">
+                        <div className="relative">
+<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-red-500 shadow-lg bg-slate-800">
+                                {preview ? (
+<img src={preview} alt="Profile Preview" className="w-full h-full object-cover" />
+                                ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-500">
+                                        <FaUser size={32} />
+                                    </div>
+                                )}
+                            </div>
+<label htmlFor="image" className="absolute bottom-0 right-0 bg-green-500 hover:bg-green-600 text-white p-2 rounded-full cursor-pointer shadow-lg transition">
+                                <FaCamera size={12} />
+                            </label>
+                        </div>
+<input id="image" name="image" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+                        <p className="text-xs text-green-500">Upload your profile picture</p>
+                    </div>
       <TextField
         isRequired
         name="name"
         type="text">
         <Label>Name</Label>
         <Input placeholder="Enter your name" />
-        <FieldError />
-      </TextField>
-      <TextField
-        isRequired
-        name="image"
-        type="url">
-        <Label>Image URL</Label>
-        <Input placeholder="Enter the URL of your image" />
         <FieldError />
       </TextField>
       <TextField
