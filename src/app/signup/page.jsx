@@ -50,7 +50,7 @@ const SignUp = () => {
         toast.error(error.message);
         return;
       }
-
+await authClient.signOut();
       toast.success("✅ Sign Up Successful!");
 
       router.push("/login");
